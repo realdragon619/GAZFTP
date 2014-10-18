@@ -1,0 +1,7 @@
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Release\ga-z.exe
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Release\ga-z.pdb
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga_z.MainForm.resources
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga_z.Properties.Resources.resources
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.csproj.GenerateResource.Cache
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.exe
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.pdb
