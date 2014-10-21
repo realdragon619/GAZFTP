@@ -82,6 +82,8 @@
             this.FileName,
             this.PathName});
             this.FolderFileList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FolderFileList.FullRowSelect = true;
+            this.FolderFileList.GridLines = true;
             this.FolderFileList.Location = new System.Drawing.Point(296, 36);
             this.FolderFileList.Name = "FolderFileList";
             this.FolderFileList.Size = new System.Drawing.Size(287, 329);
@@ -130,9 +132,9 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button FolderOpen;
         private System.Windows.Forms.ListView FolderFileList;
+        private System.Windows.Forms.ImageList FileImageList;
         private System.Windows.Forms.ColumnHeader FileName;
         private System.Windows.Forms.ColumnHeader PathName;
-        private System.Windows.Forms.ImageList FileImageList;
 
 
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+
 namespace ga_z
 {
     public partial class MainForm : Form
@@ -90,24 +91,24 @@ namespace ga_z
                         FolderFileList.Items.Add("..", 0);
                     }
                    
-                foreach (string file in files)
-                {
-                    ListViewItem lvi = new ListViewItem(Path.GetFileName(file),1);
-                    lvi.SubItems.Add(Path.GetDirectoryName(file));
-                    FolderFileList.Items.Add(lvi);
-                }
-                foreach (string dir in dirs)
-                {
-                    ListViewItem lvi = new ListViewItem(Path.GetFileName(dir),0);
-                    lvi.SubItems.Add(Path.GetDirectoryName(dir));
-                    FolderFileList.Items.Add(lvi);
+                    foreach (string file in files)
+                    {
+                        ListViewItem lvi = new ListViewItem(Path.GetFileName(file),1);
+                        lvi.SubItems.Add(Path.GetDirectoryName(file));
+                        FolderFileList.Items.Add(lvi);
+                    }
+                    foreach (string dir in dirs)
+                    {
+                        ListViewItem lvi = new ListViewItem(Path.GetFileName(dir),0);
+                        lvi.SubItems.Add(Path.GetDirectoryName(dir));
+                        FolderFileList.Items.Add(lvi);
                 }
             
                 }
             
         }
 
-       
+                
 
         
     }
