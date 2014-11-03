@@ -5,3 +5,4 @@ C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga-z.csproj.GenerateR
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga-z.exe
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga-z.pdb
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.MainForm.resources
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga-z.csprojResolveAssemblyReference.cache

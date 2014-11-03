@@ -108,6 +108,11 @@ namespace ga_z
             
         }
 
+        private void FolderFileList_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            e.Item.BackColor = System.Drawing.Color.Transparent;
+        }
+
                 
 
         
