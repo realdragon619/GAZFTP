@@ -31,74 +31,76 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.FolderOpen = new System.Windows.Forms.Button();
             this.FolderFileList = new System.Windows.Forms.ListView();
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.extention = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileImageList = new System.Windows.Forms.ImageList(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.Host = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.User = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.Password = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.Port = new System.Windows.Forms.TextBox();
             this.Connect = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.FTPListview = new System.Windows.Forms.ListView();
+            this.file = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FolderOpen = new System.Windows.Forms.Button();
+            this.types = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.78164F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.21836F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.63523F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.36477F));
             this.tableLayoutPanel1.Controls.Add(this.FolderFileList, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.FolderOpen, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.17757F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.82243F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(806, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(894, 428);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // FolderOpen
-            // 
-            this.FolderOpen.Location = new System.Drawing.Point(3, 38);
-            this.FolderOpen.Name = "FolderOpen";
-            this.FolderOpen.Size = new System.Drawing.Size(50, 20);
-            this.FolderOpen.TabIndex = 1;
-            this.FolderOpen.Text = "Open";
-            this.FolderOpen.UseVisualStyleBackColor = true;
-            this.FolderOpen.Click += new System.EventHandler(this.FolderOpen_Click);
             // 
             // FolderFileList
             // 
             this.FolderFileList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FileName,
-            this.PathName});
+            this.PathName,
+            this.type,
+            this.extention});
             this.FolderFileList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FolderFileList.FullRowSelect = true;
-            this.FolderFileList.GridLines = true;
-            this.FolderFileList.Location = new System.Drawing.Point(372, 38);
+            this.FolderFileList.Location = new System.Drawing.Point(437, 36);
             this.FolderFileList.Name = "FolderFileList";
-            this.FolderFileList.Size = new System.Drawing.Size(431, 387);
+            this.FolderFileList.Size = new System.Drawing.Size(454, 368);
             this.FolderFileList.SmallImageList = this.FileImageList;
             this.FolderFileList.TabIndex = 5;
             this.FolderFileList.UseCompatibleStateImageBehavior = false;
             this.FolderFileList.View = System.Windows.Forms.View.Details;
-            this.FolderFileList.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.FolderFileList_ItemMouseHover);
             this.FolderFileList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FolderFileList_MouseDoubleClick);
             // 
             // FileName
@@ -110,6 +112,14 @@
             // 
             this.PathName.Text = "경로";
             this.PathName.Width = 145;
+            // 
+            // type
+            // 
+            this.type.Text = "형식";
+            // 
+            // extention
+            // 
+            this.extention.Text = "확장자";
             // 
             // FileImageList
             // 
@@ -127,7 +137,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(363, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(428, 27);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // label1
@@ -146,27 +156,14 @@
             // 
             this.Host.Location = new System.Drawing.Point(55, 3);
             this.Host.Name = "Host";
-            this.Host.Size = new System.Drawing.Size(109, 21);
+            this.Host.Size = new System.Drawing.Size(137, 21);
             this.Host.TabIndex = 9;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.label4);
-            this.flowLayoutPanel2.Controls.Add(this.Password);
-            this.flowLayoutPanel2.Controls.Add(this.label5);
-            this.flowLayoutPanel2.Controls.Add(this.Port);
-            this.flowLayoutPanel2.Controls.Add(this.Connect);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(372, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(431, 29);
-            this.flowLayoutPanel2.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.Location = new System.Drawing.Point(177, 5);
+            this.label2.Location = new System.Drawing.Point(205, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(10, 5, 3, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
@@ -176,10 +173,23 @@
             // 
             // User
             // 
-            this.User.Location = new System.Drawing.Point(224, 3);
+            this.User.Location = new System.Drawing.Point(252, 3);
             this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(115, 21);
+            this.User.Size = new System.Drawing.Size(140, 21);
             this.User.TabIndex = 11;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label4);
+            this.flowLayoutPanel2.Controls.Add(this.Password);
+            this.flowLayoutPanel2.Controls.Add(this.label5);
+            this.flowLayoutPanel2.Controls.Add(this.Port);
+            this.flowLayoutPanel2.Controls.Add(this.Connect);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(437, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(454, 27);
+            this.flowLayoutPanel2.TabIndex = 7;
             // 
             // label4
             // 
@@ -228,6 +238,69 @@
             this.Connect.TabIndex = 16;
             this.Connect.Text = "접속";
             this.Connect.UseVisualStyleBackColor = true;
+            this.Connect.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(3, 36);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.FTPListview);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.FolderOpen);
+            this.splitContainer1.Size = new System.Drawing.Size(428, 368);
+            this.splitContainer1.SplitterDistance = 201;
+            this.splitContainer1.TabIndex = 8;
+            // 
+            // FTPListview
+            // 
+            this.FTPListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.file,
+            this.size,
+            this.date,
+            this.types});
+            this.FTPListview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FTPListview.FullRowSelect = true;
+            this.FTPListview.Location = new System.Drawing.Point(0, 0);
+            this.FTPListview.Name = "FTPListview";
+            this.FTPListview.Size = new System.Drawing.Size(428, 201);
+            this.FTPListview.TabIndex = 0;
+            this.FTPListview.UseCompatibleStateImageBehavior = false;
+            this.FTPListview.View = System.Windows.Forms.View.Details;
+            // 
+            // file
+            // 
+            this.file.Text = "이름";
+            this.file.Width = 93;
+            // 
+            // size
+            // 
+            this.size.Text = "크기";
+            this.size.Width = 90;
+            // 
+            // date
+            // 
+            this.date.Text = "수정한날짜";
+            this.date.Width = 107;
+            // 
+            // FolderOpen
+            // 
+            this.FolderOpen.Location = new System.Drawing.Point(-1, 3);
+            this.FolderOpen.Name = "FolderOpen";
+            this.FolderOpen.Size = new System.Drawing.Size(50, 27);
+            this.FolderOpen.TabIndex = 1;
+            this.FolderOpen.Text = "Open";
+            this.FolderOpen.UseVisualStyleBackColor = true;
+            this.FolderOpen.Click += new System.EventHandler(this.FolderOpen_Click);
+            // 
+            // types
+            // 
+            this.types.Text = "형식";
             // 
             // MainForm
             // 
@@ -236,7 +309,7 @@
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(806, 428);
+            this.ClientSize = new System.Drawing.Size(894, 428);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainForm";
             this.Text = "MainFrame";
@@ -245,6 +318,10 @@
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -268,6 +345,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox Port;
         private System.Windows.Forms.Button Connect;
+        private System.Windows.Forms.ColumnHeader type;
+        private System.Windows.Forms.ColumnHeader extention;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ListView FTPListview;
+        private System.Windows.Forms.ColumnHeader file;
+        private System.Windows.Forms.ColumnHeader size;
+        private System.Windows.Forms.ColumnHeader date;
+        private System.Windows.Forms.ColumnHeader types;
 
 
 

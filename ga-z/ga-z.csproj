@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BytesRoad.Net.Ftp">
+      <HintPath>..\..\..\..\Downloads\BytesRoad.NetSuit_2_0\Bin\BytesRoad.Net.Ftp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FTP.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
