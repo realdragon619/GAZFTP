@@ -53,8 +53,8 @@
             this.file = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.FolderOpen = new System.Windows.Forms.Button();
             this.types = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FolderOpen = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -269,9 +269,11 @@
             this.FTPListview.Location = new System.Drawing.Point(0, 0);
             this.FTPListview.Name = "FTPListview";
             this.FTPListview.Size = new System.Drawing.Size(428, 201);
+            this.FTPListview.SmallImageList = this.FileImageList;
             this.FTPListview.TabIndex = 0;
             this.FTPListview.UseCompatibleStateImageBehavior = false;
             this.FTPListview.View = System.Windows.Forms.View.Details;
+            this.FTPListview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.FTPListview_MouseDoubleClick);
             // 
             // file
             // 
@@ -288,6 +290,10 @@
             this.date.Text = "수정한날짜";
             this.date.Width = 107;
             // 
+            // types
+            // 
+            this.types.Text = "형식";
+            // 
             // FolderOpen
             // 
             this.FolderOpen.Location = new System.Drawing.Point(-1, 3);
@@ -297,10 +303,6 @@
             this.FolderOpen.Text = "Open";
             this.FolderOpen.UseVisualStyleBackColor = true;
             this.FolderOpen.Click += new System.EventHandler(this.FolderOpen_Click);
-            // 
-            // types
-            // 
-            this.types.Text = "형식";
             // 
             // MainForm
             // 

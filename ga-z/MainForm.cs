@@ -36,7 +36,10 @@ namespace ga_z
                  
                 if (FBD.SelectedPath != "C:\\")
                 {
-                    FolderFileList.Items.Add("..", 0);
+                    ListViewItem lvi = new ListViewItem("..",0);
+                    lvi.SubItems.Add("상위폴더");
+                    lvi.SubItems.Add("폴더");
+                    FolderFileList.Items.Add(lvi);
                 }
                 
                 foreach (string dir in dirs)
@@ -44,7 +47,6 @@ namespace ga_z
                     ListViewItem lvi = new ListViewItem(Path.GetFileName(dir),0);
                     lvi.SubItems.Add(Path.GetDirectoryName(dir));
                     lvi.SubItems.Add("폴더");
-                    lvi.SubItems.Add(Path.GetExtension(dir));
                     FolderFileList.Items.Add(lvi);
                     
                 }
@@ -96,10 +98,11 @@ namespace ga_z
                             FBD.SelectedPath = path + "\\" + ClickFile;
                         }
                     }
-                    
+                   
                     FolderFileList.Items.Clear();
                     files = Directory.GetFiles(FBD.SelectedPath);
                     dirs = Directory.GetDirectories(FBD.SelectedPath);
+                    
                     if (FBD.SelectedPath != "C:\\")
                     {
                         FolderFileList.Items.Add("..", 0);
@@ -142,6 +145,14 @@ namespace ga_z
                 Connect.Text = "접속"; 
             }            
             
+        }
+
+        private void FTPListview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (FTPListview.SelectedItems.Count == 1)
+            {
+                ftp.DoubleClick(FTPListview,FTPListview.FocusedItem.SubItems[0].Text,FTPListview.FocusedItem.SubItems[3].Text);
+            }
         }              
     }
 }
