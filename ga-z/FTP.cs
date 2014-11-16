@@ -48,10 +48,19 @@ namespace ga_z
                 client.ChangeDirectory(0, path);
                 ftpitem = client.GetDirectoryList(0);
                 showItem(listview);
+                
             }
+        }
+        public void Upload(string localpath)
+        {
+            string target = Path.Combine(client.GetWorkingDirectory(0),
+            Path.GetFileName(localpath)).Replace("\\", "/");
+            MessageBox.Show(target);
+            client.PutFile(0,target,localpath);
         }
         public void showItem(ListView listview)
         {
+            
             foreach (FtpItem f in ftpitem)
             {
                 if (f.ItemType.ToString() != "Directory")
@@ -63,6 +72,7 @@ namespace ga_z
                 lvi.SubItems.Add(f.Date.ToString());
                 lvi.SubItems.Add("폴더");
                 listview.Items.Add(lvi);
+                
             }
             foreach (FtpItem f in ftpitem)
             {

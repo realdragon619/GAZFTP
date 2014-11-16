@@ -8,3 +8,4 @@ C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.MainForm.resourc
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga-z.csprojResolveAssemblyReference.cache
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Debug\BytesRoad.Net.Ftp.dll
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Debug\BytesRoad.Net.Sockets.dll
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.connectForm.resources

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
+using System.Threading;
 namespace ga_z
 {
     public partial class MainForm : Form 
@@ -17,22 +17,25 @@ namespace ga_z
         String []dirs;
         FTP ftp = new FTP();
         bool Conn = false;
+        Thread Th_Connect;
+        
         public MainForm()
         {
             InitializeComponent();
+            Port.SelectedIndex = 0;
             
-        }
+        }        
 
         private void FolderOpen_Click(object sender, EventArgs e)
-        {         
-
+        {
+            
             if (FBD.ShowDialog() == DialogResult.OK)
             {
                 FolderFileList.Items.Clear();
-                
+                FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
                 files = Directory.GetFiles(FBD.SelectedPath);
                 dirs = Directory.GetDirectories(FBD.SelectedPath);
-                          
+                                
                  
                 if (FBD.SelectedPath != "C:\\")
                 {
@@ -44,10 +47,12 @@ namespace ga_z
                 
                 foreach (string dir in dirs)
                 {
-                    ListViewItem lvi = new ListViewItem(Path.GetFileName(dir),0);
-                    lvi.SubItems.Add(Path.GetDirectoryName(dir));
-                    lvi.SubItems.Add("폴더");
-                    FolderFileList.Items.Add(lvi);
+                    
+                   ListViewItem lvi = new ListViewItem(Path.GetFileName(dir), 0);
+                   lvi.SubItems.Add(Path.GetDirectoryName(dir));
+                   lvi.SubItems.Add("폴더");
+                   FolderFileList.Items.Add(lvi);
+                  
                     
                 }
                 foreach (string file in files)
@@ -133,10 +138,22 @@ namespace ga_z
 
         private void Connect_Click(object sender, EventArgs e)
         {
+            string port="";
+            if (Port.Text == "FTP")
+            {
+                port = "21";
+            }
+            else if(Port.Text == "SFTP")
+            {
+                port = "22";
+            }
             
             if (Conn == false)
             {
-                Conn = ftp.Connected(0, Host.Text, User.Text, Password.Text, Port.Text, FTPListview);
+                Th_Connect = new Thread(connectForm.show);
+                Th_Connect.Start();
+                Conn = ftp.Connected(0, Host.Text, User.Text, Password.Text, port, FTPListview);
+                connectForm.close();
                 Connect.Text = "접속끊기"; 
             }
             else if (Conn == true)
@@ -152,6 +169,15 @@ namespace ga_z
             if (FTPListview.SelectedItems.Count == 1)
             {
                 ftp.DoubleClick(FTPListview,FTPListview.FocusedItem.SubItems[0].Text,FTPListview.FocusedItem.SubItems[3].Text);
+            }
+        }
+
+        private void 업로드ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FolderFileList.SelectedItems.Count == 1 && Conn == true)
+            {
+                string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
+                ftp.Upload(localpath);
             }
         }              
     }

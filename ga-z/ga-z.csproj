@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="connectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="connectForm.Designer.cs">
+      <DependentUpon>connectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FTP.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -58,6 +64,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="connectForm.resx">
+      <DependentUpon>connectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
