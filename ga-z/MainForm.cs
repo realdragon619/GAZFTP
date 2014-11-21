@@ -13,19 +13,53 @@ namespace ga_z
     public partial class MainForm : Form 
     {
         FolderBrowserDialog FBD = new FolderBrowserDialog();
-        String []files;
         String []dirs;
         FTP ftp = new FTP();
         bool Conn = false;
         Thread Th_Connect;
+        String start_path = "C:\\";
         
         public MainForm()
         {
             InitializeComponent();
             Port.SelectedIndex = 0;
+            FBD.SelectedPath = start_path;
+            FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
+            DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
+            FileInfo[] fiArr = di.GetFiles();
+            dirs = Directory.GetDirectories(FBD.SelectedPath);
+
+
+            if (FBD.SelectedPath != "C:\\")
+            {
+                ListViewItem lvi = new ListViewItem("..", 0);
+                lvi.SubItems.Add("상위폴더");
+                lvi.SubItems.Add("폴더");
+                FolderFileList.Items.Add(lvi);
+            }
+
+            foreach (string dir in dirs)
+            {
+
+                ListViewItem lvi = new ListViewItem(Path.GetFileName(dir), 0);
+                lvi.SubItems.Add(Path.GetDirectoryName(dir));
+                lvi.SubItems.Add("폴더");
+                FolderFileList.Items.Add(lvi);
+
+
+            }
+            foreach (FileInfo f in fiArr)
+            {
+                ListViewItem lvi = new ListViewItem(f.Name, 1);
+                lvi.SubItems.Add(f.DirectoryName);
+                lvi.SubItems.Add("파일");
+                lvi.SubItems.Add(f.Length.ToString());
+                lvi.SubItems.Add(f.Extension);
+                FolderFileList.Items.Add(lvi);
+            }
             
         }        
-
+       
         private void FolderOpen_Click(object sender, EventArgs e)
         {
             
@@ -33,7 +67,10 @@ namespace ga_z
             {
                 FolderFileList.Items.Clear();
                 FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
-                files = Directory.GetFiles(FBD.SelectedPath);
+                
+                DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
+                FileInfo[] fiArr = di.GetFiles();
+                
                 dirs = Directory.GetDirectories(FBD.SelectedPath);
                                 
                  
@@ -52,15 +89,16 @@ namespace ga_z
                    lvi.SubItems.Add(Path.GetDirectoryName(dir));
                    lvi.SubItems.Add("폴더");
                    FolderFileList.Items.Add(lvi);
-                  
+                   
                     
                 }
-                foreach (string file in files)
+                foreach (FileInfo f in fiArr)
                 {
-                    ListViewItem lvi = new ListViewItem(Path.GetFileName(file), 1);
-                    lvi.SubItems.Add(Path.GetDirectoryName(file));
-                    lvi.SubItems.Add("파일");
-                    lvi.SubItems.Add(Path.GetExtension(file));
+                    ListViewItem lvi = new ListViewItem(f.Name, 1);
+                    lvi.SubItems.Add(f.DirectoryName);
+                    lvi.SubItems.Add("파일");                    
+                    lvi.SubItems.Add(f.Length.ToString());
+                    lvi.SubItems.Add(f.Extension);
                     FolderFileList.Items.Add(lvi);
                 }
             }
@@ -105,9 +143,10 @@ namespace ga_z
                     }
                    
                     FolderFileList.Items.Clear();
-                    files = Directory.GetFiles(FBD.SelectedPath);
                     dirs = Directory.GetDirectories(FBD.SelectedPath);
-                    
+                    DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
+                    FileInfo[] fiArr = di.GetFiles();
+
                     if (FBD.SelectedPath != "C:\\")
                     {
                         FolderFileList.Items.Add("..", 0);
@@ -123,12 +162,13 @@ namespace ga_z
                         lvi.SubItems.Add(Path.GetExtension(dir));
                         FolderFileList.Items.Add(lvi);
                     }
-                    foreach (string file in files)
+                    foreach (FileInfo f in fiArr)
                     {
-                        ListViewItem lvi = new ListViewItem(Path.GetFileName(file), 1);
-                        lvi.SubItems.Add(Path.GetDirectoryName(file));
+                        ListViewItem lvi = new ListViewItem(f.Name, 1);
+                        lvi.SubItems.Add(f.DirectoryName);
                         lvi.SubItems.Add("파일");
-                        lvi.SubItems.Add(Path.GetExtension(file));
+                        lvi.SubItems.Add(f.Length.ToString());
+                        lvi.SubItems.Add(f.Extension);
                         FolderFileList.Items.Add(lvi);
                     }
             
@@ -177,8 +217,13 @@ namespace ga_z
             if (FolderFileList.SelectedItems.Count == 1 && Conn == true)
             {
                 string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
-                ftp.Upload(localpath);
+                string filename = FolderFileList.FocusedItem.SubItems[0].Text;
+                int size = int.Parse(FolderFileList.FocusedItem.SubItems[3].Text);
+                ftp.Upload(localpath,size,filename);                
+                
             }
         }              
+
+        
     }
 }

@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.Port = new System.Windows.Forms.ComboBox();
             this.Connect = new System.Windows.Forms.Button();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.FTPListview = new System.Windows.Forms.ListView();
             this.file = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,34 +51,34 @@
             this.types = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileImageList = new System.Windows.Forms.ImageList(this.components);
             this.FolderOpen = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.FolderFileList = new System.Windows.Forms.ListView();
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PathName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.extention = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.Localarea = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.열기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.업로드ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.filesize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.Localarea.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.09843F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.90157F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.91667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.08333F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 1);
@@ -88,9 +89,9 @@
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.577465F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.42254F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(894, 428);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1008, 428);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -102,7 +103,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(423, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(477, 27);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // label1
@@ -140,7 +141,7 @@
             // 
             this.User.Location = new System.Drawing.Point(252, 3);
             this.User.Name = "User";
-            this.User.Size = new System.Drawing.Size(140, 21);
+            this.User.Size = new System.Drawing.Size(158, 21);
             this.User.TabIndex = 11;
             // 
             // flowLayoutPanel2
@@ -152,9 +153,9 @@
             this.flowLayoutPanel2.Controls.Add(this.Connect);
             this.flowLayoutPanel2.Controls.Add(this.trackBar1);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(432, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(486, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(459, 28);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(519, 27);
             this.flowLayoutPanel2.TabIndex = 7;
             // 
             // label4
@@ -181,8 +182,8 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label5.Location = new System.Drawing.Point(237, 5);
-            this.label5.Margin = new System.Windows.Forms.Padding(10, 5, 3, 10);
+            this.label5.Location = new System.Drawing.Point(267, 5);
+            this.label5.Margin = new System.Windows.Forms.Padding(40, 5, 3, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 13);
             this.label5.TabIndex = 14;
@@ -197,14 +198,15 @@
             this.Port.Items.AddRange(new object[] {
             "FTP",
             "SFTP"});
-            this.Port.Location = new System.Drawing.Point(310, 3);
+            this.Port.Location = new System.Drawing.Point(340, 3);
             this.Port.Name = "Port";
             this.Port.Size = new System.Drawing.Size(68, 20);
             this.Port.TabIndex = 2;
             // 
             // Connect
             // 
-            this.Connect.Location = new System.Drawing.Point(384, 3);
+            this.Connect.Location = new System.Drawing.Point(421, 3);
+            this.Connect.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.Connect.Name = "Connect";
             this.Connect.Size = new System.Drawing.Size(65, 23);
             this.Connect.TabIndex = 16;
@@ -212,9 +214,16 @@
             this.Connect.UseVisualStyleBackColor = true;
             this.Connect.Click += new System.EventHandler(this.Connect_Click);
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(3, 32);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 17;
+            // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(3, 37);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 36);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -225,8 +234,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.FolderOpen);
-            this.splitContainer1.Size = new System.Drawing.Size(423, 309);
-            this.splitContainer1.SplitterDistance = 168;
+            this.splitContainer1.Size = new System.Drawing.Size(477, 306);
+            this.splitContainer1.SplitterDistance = 166;
             this.splitContainer1.TabIndex = 8;
             // 
             // FTPListview
@@ -236,11 +245,10 @@
             this.size,
             this.date,
             this.types});
-            this.FTPListview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FTPListview.FullRowSelect = true;
-            this.FTPListview.Location = new System.Drawing.Point(0, 0);
+            this.FTPListview.Location = new System.Drawing.Point(-3, 3);
             this.FTPListview.Name = "FTPListview";
-            this.FTPListview.Size = new System.Drawing.Size(423, 168);
+            this.FTPListview.Size = new System.Drawing.Size(478, 160);
             this.FTPListview.SmallImageList = this.FileImageList;
             this.FTPListview.TabIndex = 0;
             this.FTPListview.UseCompatibleStateImageBehavior = false;
@@ -283,19 +291,29 @@
             this.FolderOpen.UseVisualStyleBackColor = true;
             this.FolderOpen.Click += new System.EventHandler(this.FolderOpen_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.FolderFileList);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(486, 36);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(519, 306);
+            this.panel1.TabIndex = 9;
+            // 
             // FolderFileList
             // 
             this.FolderFileList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FileName,
             this.PathName,
             this.type,
+            this.filesize,
             this.extention});
             this.FolderFileList.ContextMenuStrip = this.Localarea;
             this.FolderFileList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FolderFileList.FullRowSelect = true;
             this.FolderFileList.Location = new System.Drawing.Point(0, 0);
             this.FolderFileList.Name = "FolderFileList";
-            this.FolderFileList.Size = new System.Drawing.Size(459, 315);
+            this.FolderFileList.Size = new System.Drawing.Size(519, 306);
             this.FolderFileList.SmallImageList = this.FileImageList;
             this.FolderFileList.TabIndex = 1;
             this.FolderFileList.UseCompatibleStateImageBehavior = false;
@@ -319,15 +337,7 @@
             // extention
             // 
             this.extention.Text = "확장자";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.FolderFileList);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(432, 37);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(459, 315);
-            this.panel1.TabIndex = 9;
+            this.extention.Width = 55;
             // 
             // Localarea
             // 
@@ -335,7 +345,7 @@
             this.열기ToolStripMenuItem,
             this.업로드ToolStripMenuItem});
             this.Localarea.Name = "Localarea";
-            this.Localarea.Size = new System.Drawing.Size(153, 70);
+            this.Localarea.Size = new System.Drawing.Size(111, 48);
             // 
             // 열기ToolStripMenuItem
             // 
@@ -346,16 +356,14 @@
             // 업로드ToolStripMenuItem
             // 
             this.업로드ToolStripMenuItem.Name = "업로드ToolStripMenuItem";
-            this.업로드ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.업로드ToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.업로드ToolStripMenuItem.Text = "업로드";
             this.업로드ToolStripMenuItem.Click += new System.EventHandler(this.업로드ToolStripMenuItem_Click);
             // 
-            // trackBar1
+            // filesize
             // 
-            this.trackBar1.Location = new System.Drawing.Point(3, 32);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
-            this.trackBar1.TabIndex = 17;
+            this.filesize.Text = "크기";
+            this.filesize.Width = 97;
             // 
             // MainForm
             // 
@@ -364,7 +372,7 @@
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(894, 428);
+            this.ClientSize = new System.Drawing.Size(1008, 428);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainForm";
             this.Text = "MainFrame";
@@ -373,13 +381,13 @@
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.Localarea.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -416,6 +424,7 @@
         private System.Windows.Forms.ToolStripMenuItem 열기ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 업로드ToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.ColumnHeader filesize;
 
 
 
