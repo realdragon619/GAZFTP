@@ -6,3 +6,7 @@ C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.csproj.Generat
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.exe
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.pdb
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga-z.csprojResolveAssemblyReference.cache
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Release\BytesRoad.Net.Ftp.dll
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Release\BytesRoad.Net.Sockets.dll
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga_z.connectForm.resources
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Release\ga_z.load_bar.resources

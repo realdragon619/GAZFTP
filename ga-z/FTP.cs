@@ -15,10 +15,12 @@ namespace ga_z
         ListView listview;           
         FtpItem[] ftpitem;        
         Thread Th_Connect;
-        Thread Th_Putfile;
-        String localpath;
+        Thread Th_File;
+        
+        String path;
+        String filename;
         int filesize;
-        string local_filename;
+        
 
         public FTP()
         {
@@ -67,28 +69,51 @@ namespace ga_z
         private void putfile()
         {
             string target = Path.Combine(client.GetWorkingDirectory(0),
-            Path.GetFileName(localpath)).Replace("\\", "/");
-            client.PutFile(0, target, localpath);
+            Path.GetFileName(path)).Replace("\\", "/");
+            client.PutFile(0, target,path);
             Thread.Sleep(1000);
             bar_form.close();
             refresh();
             
             
         }
+        private void getfile()
+        {
+            string target = Path.Combine(path,filename);
+            string ftp_target = Path.Combine(client.GetWorkingDirectory(0),
+            filename).Replace("\\", "/");
+                        
+            client.GetFile(0,target,ftp_target);
+           
+            Thread.Sleep(1000);
+            bar_form.close();
+            
+        }
         public void Upload(string localpath,int size,string filename)
         {
-            this.localpath = localpath;
+            this.path = localpath;
             this.filesize = size;
-            this.local_filename = filename;
+            this.filename = filename;
             bar_form.load_file_size(size);
-            bar_form.load_file_name(local_filename);
+            bar_form.load_file_name(filename);
             Th_Connect = new Thread(bar_form.show);
-            Th_Putfile = new Thread(putfile);
+            Th_File = new Thread(putfile);
             Th_Connect.Start();
-            Th_Putfile.Start();       
-           
+            Th_File.Start();          
                        
                         
+        }
+        public void Download(string localpath, int size, string filename)
+        {
+            this.path = localpath;
+            this.filesize = size;
+            this.filename = filename ;
+            bar_form.load_file_size(size);
+            bar_form.load_file_name(filename);
+            Th_Connect = new Thread(bar_form.show);
+            Th_File = new Thread(getfile);
+            Th_Connect.Start();
+            Th_File.Start();      
         }
         public void refresh()
         {
@@ -131,7 +156,17 @@ namespace ga_z
         {
             bar_form.set_bar(e.WholeTransfered);
         }
-
+        public string getPath()
+        {
+            return client.GetWorkingDirectory(0);
+        }
+        public void Delete(string filename)
+        {
+            string ftp_target = Path.Combine(client.GetWorkingDirectory(0),
+            filename).Replace("\\", "/");
+            client.DeleteFile(0, ftp_target);
+            refresh();
+        }
     }
     
 }

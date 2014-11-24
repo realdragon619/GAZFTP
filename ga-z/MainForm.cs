@@ -50,7 +50,18 @@ namespace ga_z
             }
             foreach (FileInfo f in fiArr)
             {
-                ListViewItem lvi = new ListViewItem(f.Name, 1);
+                ListViewItem lvi;
+               
+                Icon iconForFile = SystemIcons.WinLogo;
+                lvi = new ListViewItem(f.Name, 1);
+                iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
+                if (!FileImageList.Images.ContainsKey(f.Extension))
+                {
+                    
+                    iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
+                    FileImageList.Images.Add(f.Extension, iconForFile);
+                }
+                lvi.ImageKey = f.Extension;                      
                 lvi.SubItems.Add(f.DirectoryName);
                 lvi.SubItems.Add("파일");
                 lvi.SubItems.Add(f.Length.ToString());
@@ -60,50 +71,7 @@ namespace ga_z
             
         }        
        
-        private void FolderOpen_Click(object sender, EventArgs e)
-        {
-            
-            if (FBD.ShowDialog() == DialogResult.OK)
-            {
-                FolderFileList.Items.Clear();
-                FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
-                
-                DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
-                FileInfo[] fiArr = di.GetFiles();
-                
-                dirs = Directory.GetDirectories(FBD.SelectedPath);
-                                
-                 
-                if (FBD.SelectedPath != "C:\\")
-                {
-                    ListViewItem lvi = new ListViewItem("..",0);
-                    lvi.SubItems.Add("상위폴더");
-                    lvi.SubItems.Add("폴더");
-                    FolderFileList.Items.Add(lvi);
-                }
-                
-                foreach (string dir in dirs)
-                {
-                    
-                   ListViewItem lvi = new ListViewItem(Path.GetFileName(dir), 0);
-                   lvi.SubItems.Add(Path.GetDirectoryName(dir));
-                   lvi.SubItems.Add("폴더");
-                   FolderFileList.Items.Add(lvi);
-                   
-                    
-                }
-                foreach (FileInfo f in fiArr)
-                {
-                    ListViewItem lvi = new ListViewItem(f.Name, 1);
-                    lvi.SubItems.Add(f.DirectoryName);
-                    lvi.SubItems.Add("파일");                    
-                    lvi.SubItems.Add(f.Length.ToString());
-                    lvi.SubItems.Add(f.Extension);
-                    FolderFileList.Items.Add(lvi);
-                }
-            }
-        }
-
+     
         private void FolderFileList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             
@@ -164,7 +132,20 @@ namespace ga_z
                     }
                     foreach (FileInfo f in fiArr)
                     {
-                        ListViewItem lvi = new ListViewItem(f.Name, 1);
+
+
+                        ListViewItem lvi;
+
+                        Icon iconForFile = SystemIcons.WinLogo;
+                        lvi = new ListViewItem(f.Name, 1);
+                        iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
+                        if (!FileImageList.Images.ContainsKey(f.Extension))
+                        {
+
+                            iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
+                            FileImageList.Images.Add(f.Extension, iconForFile);
+                        }
+                        lvi.ImageKey = f.Extension;
                         lvi.SubItems.Add(f.DirectoryName);
                         lvi.SubItems.Add("파일");
                         lvi.SubItems.Add(f.Length.ToString());
@@ -222,8 +203,102 @@ namespace ga_z
                 ftp.Upload(localpath,size,filename);                
                 
             }
+        }
+
+        private void 열기ToolStripButton_Click(object sender, EventArgs e)
+        {
+
+            if (FBD.ShowDialog() == DialogResult.OK)
+            {
+                FolderFileList.Items.Clear();
+                FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
+
+                DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
+                FileInfo[] fiArr = di.GetFiles();
+
+                dirs = Directory.GetDirectories(FBD.SelectedPath);
+
+
+                if (FBD.SelectedPath != "C:\\")
+                {
+                    ListViewItem lvi = new ListViewItem("..", 0);
+                    lvi.SubItems.Add("상위폴더");
+                    lvi.SubItems.Add("폴더");
+                    FolderFileList.Items.Add(lvi);
+                }
+
+                foreach (string dir in dirs)
+                {
+                    ListViewItem lvi = new ListViewItem(Path.GetFileName(dir), 0);
+                    lvi.SubItems.Add(Path.GetDirectoryName(dir));
+                    lvi.SubItems.Add("폴더");
+                    FolderFileList.Items.Add(lvi);
+                }
+                foreach (FileInfo f in fiArr)
+                {
+                    ListViewItem lvi;
+
+                    Icon iconForFile = SystemIcons.WinLogo;
+                    lvi = new ListViewItem(f.Name, 1);
+                    iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
+                    if (!FileImageList.Images.ContainsKey(f.Extension))
+                    {
+
+                        iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
+                        FileImageList.Images.Add(f.Extension, iconForFile);
+                    }
+                    lvi.ImageKey = f.Extension;
+                    lvi.SubItems.Add(f.DirectoryName);
+                    lvi.SubItems.Add("파일");
+                    lvi.SubItems.Add(f.Length.ToString());
+                    lvi.SubItems.Add(f.Extension);
+                    FolderFileList.Items.Add(lvi);
+                }
+            }
+        }
+
+        private void 다운로드ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FTPListview.SelectedItems.Count == 1 && Conn == true)
+            {
+                string filename = FTPListview.FocusedItem.SubItems[0].Text;
+                int size = int.Parse(FTPListview.FocusedItem.SubItems[1].Text);
+                ftp.Download(FBD.SelectedPath, size, filename);
+            }   
+        }
+
+        private void 삭제ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FTPListview.SelectedItems.Count == 1 && Conn == true)
+            {
+                string filename = FTPListview.FocusedItem.SubItems[0].Text;
+                ftp.Delete(filename);
+            }   
+        }
+
+        private void file_download_Click(object sender, EventArgs e)
+        {
+            if (FTPListview.SelectedItems.Count == 1 && Conn == true)
+            {
+                string filename = FTPListview.FocusedItem.SubItems[0].Text;
+                int size = int.Parse(FTPListview.FocusedItem.SubItems[1].Text);
+                ftp.Download(FBD.SelectedPath, size, filename);
+            }   
+        }
+
+        private void file_upload_Click(object sender, EventArgs e)
+        {
+            if (FolderFileList.SelectedItems.Count == 1 && Conn == true)
+            {
+                string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
+                string filename = FolderFileList.FocusedItem.SubItems[0].Text;
+                int size = int.Parse(FolderFileList.FocusedItem.SubItems[3].Text);
+                ftp.Upload(localpath, size, filename);
+
+            }
         }              
 
-        
+
+                
     }
 }
