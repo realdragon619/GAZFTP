@@ -49,6 +49,7 @@
             this.FTParea = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.열기ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.다운로드ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Connect = new System.Windows.Forms.Button();
             this.Port = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,21 +63,24 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.foler_open = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.file_download = new System.Windows.Forms.ToolStripButton();
-            this.삭제ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.file_upload = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.BookListview = new System.Windows.Forms.ListView();
+            this.userListview = new System.Windows.Forms.ListView();
             this.tableLayoutPanel1.SuspendLayout();
             this.Localarea.SuspendLayout();
             this.FTParea.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -227,6 +231,13 @@
             this.다운로드ToolStripMenuItem.Text = "다운로드";
             this.다운로드ToolStripMenuItem.Click += new System.EventHandler(this.다운로드ToolStripMenuItem_Click);
             // 
+            // 삭제ToolStripMenuItem
+            // 
+            this.삭제ToolStripMenuItem.Name = "삭제ToolStripMenuItem";
+            this.삭제ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.삭제ToolStripMenuItem.Text = "삭제";
+            this.삭제ToolStripMenuItem.Click += new System.EventHandler(this.삭제ToolStripMenuItem_Click);
+            // 
             // Connect
             // 
             this.Connect.Location = new System.Drawing.Point(914, 3);
@@ -363,7 +374,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(387, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(356, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -377,6 +388,12 @@
             this.foler_open.Tag = "";
             this.foler_open.Text = "폴더불러오기";
             this.foler_open.Click += new System.EventHandler(this.열기ToolStripButton_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(79, 22);
+            this.toolStripLabel1.Text = "폴더불러오기";
             // 
             // toolStripSeparator
             // 
@@ -393,13 +410,6 @@
             this.file_download.Size = new System.Drawing.Size(23, 22);
             this.file_download.Text = "다운로드";
             this.file_download.Click += new System.EventHandler(this.file_download_Click);
-            // 
-            // 삭제ToolStripMenuItem
-            // 
-            this.삭제ToolStripMenuItem.Name = "삭제ToolStripMenuItem";
-            this.삭제ToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.삭제ToolStripMenuItem.Text = "삭제";
-            this.삭제ToolStripMenuItem.Click += new System.EventHandler(this.삭제ToolStripMenuItem_Click);
             // 
             // toolStripLabel2
             // 
@@ -436,11 +446,37 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripLabel1
+            // tableLayoutPanel2
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(79, 22);
-            this.toolStripLabel1.Text = "폴더불러오기";
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.20576F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.79424F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 518F));
+            this.tableLayoutPanel2.Controls.Add(this.BookListview, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.userListview, 1, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(1, 318);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1005, 150);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // BookListview
+            // 
+            this.BookListview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BookListview.Location = new System.Drawing.Point(3, 3);
+            this.BookListview.Name = "BookListview";
+            this.BookListview.Size = new System.Drawing.Size(238, 144);
+            this.BookListview.TabIndex = 0;
+            this.BookListview.UseCompatibleStateImageBehavior = false;
+            // 
+            // userListview
+            // 
+            this.userListview.Location = new System.Drawing.Point(247, 3);
+            this.userListview.Name = "userListview";
+            this.userListview.Size = new System.Drawing.Size(236, 144);
+            this.userListview.TabIndex = 1;
+            this.userListview.UseCompatibleStateImageBehavior = false;
             // 
             // MainForm
             // 
@@ -449,7 +485,8 @@
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(1008, 428);
+            this.ClientSize = new System.Drawing.Size(1008, 512);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
@@ -466,6 +503,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -513,6 +551,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.ListView BookListview;
+        private System.Windows.Forms.ListView userListview;
 
 
 

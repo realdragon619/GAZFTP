@@ -118,9 +118,7 @@ namespace ga_z
                     if (FBD.SelectedPath != "C:\\")
                     {
                         FolderFileList.Items.Add("..", 0);
-                                      
-                    }
-                   
+                    }                   
                     
                     foreach (string dir in dirs)
                     {
@@ -132,16 +130,12 @@ namespace ga_z
                     }
                     foreach (FileInfo f in fiArr)
                     {
-
-
                         ListViewItem lvi;
-
                         Icon iconForFile = SystemIcons.WinLogo;
                         lvi = new ListViewItem(f.Name, 1);
                         iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
                         if (!FileImageList.Images.ContainsKey(f.Extension))
                         {
-
                             iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
                             FileImageList.Images.Add(f.Extension, iconForFile);
                         }
@@ -151,10 +145,8 @@ namespace ga_z
                         lvi.SubItems.Add(f.Length.ToString());
                         lvi.SubItems.Add(f.Extension);
                         FolderFileList.Items.Add(lvi);
-                    }
-            
-                }
-            
+                    }            
+                }            
         }
 
         private void Connect_Click(object sender, EventArgs e)
