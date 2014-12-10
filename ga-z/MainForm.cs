@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -11,11 +12,14 @@ using System.Threading;
 namespace ga_z
 {
     public partial class MainForm : Form 
-    {
+    {       
+
         FolderBrowserDialog FBD = new FolderBrowserDialog();
         String []dirs;
         FTP ftp = new FTP();
         bool Conn = false;
+        BookMarkForm bookform;
+        BookMark bookmark;
         Thread Th_Connect;
         String start_path = "C:\\";
         
@@ -24,12 +28,18 @@ namespace ga_z
             InitializeComponent();
             Port.SelectedIndex = 0;
             FBD.SelectedPath = start_path;
+
+            bookmark = new BookMark();
+            bookform = new BookMarkForm();
+            PrintDir();
+
+        } 
+        public void PrintDir(){
+            FolderFileList.Items.Clear();
             FileAttributes attributes = File.GetAttributes(FBD.SelectedPath);
             DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
             FileInfo[] fiArr = di.GetFiles();
             dirs = Directory.GetDirectories(FBD.SelectedPath);
-
-
             if (FBD.SelectedPath != "C:\\")
             {
                 ListViewItem lvi = new ListViewItem("..", 0);
@@ -40,13 +50,10 @@ namespace ga_z
 
             foreach (string dir in dirs)
             {
-
                 ListViewItem lvi = new ListViewItem(Path.GetFileName(dir), 0);
                 lvi.SubItems.Add(Path.GetDirectoryName(dir));
                 lvi.SubItems.Add("폴더");
                 FolderFileList.Items.Add(lvi);
-
-
             }
             foreach (FileInfo f in fiArr)
             {
@@ -69,7 +76,7 @@ namespace ga_z
                 FolderFileList.Items.Add(lvi);
             }
             
-        }        
+        }
        
      
         private void FolderFileList_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -288,9 +295,30 @@ namespace ga_z
                 ftp.Upload(localpath, size, filename);
 
             }
-        }              
+        }        
 
+        private void book_mark_Click_1(object sender, EventArgs e)
+        {
+            bookform.show(bookmark,BookListview);         
+            
+        }    
 
-                
+        public void showBookMark(){
+            ArrayList arr = bookmark.getBooklist();
+            foreach (BookMark.myBook store in arr)
+            {
+                ListViewItem lvi = new ListViewItem(store.bookname, 0);
+                lvi.SubItems.Add(store.bookpath);
+                BookListview.Items.Add(lvi);
+            }
+        }
+
+        private void BookListview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if(BookListview.SelectedItems.Count == 1){
+                FBD.SelectedPath = BookListview.FocusedItem.SubItems[1].Text;
+                PrintDir();
+            }        
+        }           
     }
 }

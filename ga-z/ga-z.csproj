@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookMark.cs" />
+    <Compile Include="BookMarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookMarkForm.Designer.cs">
+      <DependentUpon>BookMarkForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="connectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BookMarkForm.resx">
+      <DependentUpon>BookMarkForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="connectForm.resx">
       <DependentUpon>connectForm.cs</DependentUpon>
     </EmbeddedResource>

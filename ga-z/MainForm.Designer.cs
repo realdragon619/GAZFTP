@@ -60,7 +60,7 @@
             this.Host = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.즐겨찾기 = new System.Windows.Forms.FlowLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.foler_open = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -71,14 +71,18 @@
             this.file_upload = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.book_mark = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BookListview = new System.Windows.Forms.ListView();
             this.userListview = new System.Windows.Forms.ListView();
+            this.LargeImageList = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.Localarea.SuspendLayout();
             this.FTParea.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.즐겨찾기.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -351,13 +355,13 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1012, 27);
             this.flowLayoutPanel3.TabIndex = 9;
             // 
-            // flowLayoutPanel1
+            // 즐겨찾기
             // 
-            this.flowLayoutPanel1.Controls.Add(this.toolStrip1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1, -1);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1005, 27);
-            this.flowLayoutPanel1.TabIndex = 10;
+            this.즐겨찾기.Controls.Add(this.toolStrip1);
+            this.즐겨찾기.Location = new System.Drawing.Point(1, -1);
+            this.즐겨찾기.Name = "즐겨찾기";
+            this.즐겨찾기.Size = new System.Drawing.Size(1005, 27);
+            this.즐겨찾기.TabIndex = 10;
             // 
             // toolStrip1
             // 
@@ -370,11 +374,14 @@
             this.toolStripSeparator1,
             this.file_upload,
             this.toolStripLabel3,
-            this.toolStripSeparator2});
+            this.toolStripSeparator2,
+            this.book_mark,
+            this.toolStripLabel4,
+            this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(356, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(501, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -446,6 +453,30 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // book_mark
+            // 
+            this.book_mark.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.book_mark.Image = ((System.Drawing.Image)(resources.GetObject("book_mark.Image")));
+            this.book_mark.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.book_mark.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.book_mark.Name = "book_mark";
+            this.book_mark.Size = new System.Drawing.Size(23, 22);
+            this.book_mark.Tag = "";
+            this.book_mark.Text = "즐겨찾기";
+            this.book_mark.Click += new System.EventHandler(this.book_mark_Click_1);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel4.Text = "즐겨찾기";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
@@ -464,11 +495,13 @@
             // BookListview
             // 
             this.BookListview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BookListview.LargeImageList = this.LargeImageList;
             this.BookListview.Location = new System.Drawing.Point(3, 3);
             this.BookListview.Name = "BookListview";
             this.BookListview.Size = new System.Drawing.Size(238, 144);
             this.BookListview.TabIndex = 0;
             this.BookListview.UseCompatibleStateImageBehavior = false;
+            this.BookListview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.BookListview_MouseDoubleClick);
             // 
             // userListview
             // 
@@ -477,6 +510,12 @@
             this.userListview.Size = new System.Drawing.Size(236, 144);
             this.userListview.TabIndex = 1;
             this.userListview.UseCompatibleStateImageBehavior = false;
+            // 
+            // LargeImageList
+            // 
+            this.LargeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("LargeImageList.ImageStream")));
+            this.LargeImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.LargeImageList.Images.SetKeyName(0, "Double-J-Design-Ravenna-3d-Book.ico");
             // 
             // MainForm
             // 
@@ -487,7 +526,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1008, 512);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.즐겨찾기);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
             this.MaximizeBox = false;
@@ -499,8 +538,8 @@
             this.FTParea.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
+            this.즐겨찾기.ResumeLayout(false);
+            this.즐겨찾기.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -536,7 +575,7 @@
         private System.Windows.Forms.TextBox Host;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel 즐겨찾기;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton foler_open;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
@@ -554,6 +593,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ListView BookListview;
         private System.Windows.Forms.ListView userListview;
+        private System.Windows.Forms.ToolStripButton book_mark;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ImageList LargeImageList;
 
 
 

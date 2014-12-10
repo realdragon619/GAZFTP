@@ -36,9 +36,9 @@
             // 
             // byte_bar
             // 
-            this.byte_bar.Location = new System.Drawing.Point(12, 67);
+            this.byte_bar.Location = new System.Drawing.Point(12, 52);
             this.byte_bar.Name = "byte_bar";
-            this.byte_bar.Size = new System.Drawing.Size(367, 15);
+            this.byte_bar.Size = new System.Drawing.Size(367, 30);
             this.byte_bar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.byte_bar.TabIndex = 0;
             this.byte_bar.Tag = "";
