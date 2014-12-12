@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace ga_z
 {
     public partial class MainForm : Form 
@@ -31,7 +32,9 @@ namespace ga_z
 
             bookmark = new BookMark();
             bookform = new BookMarkForm();
+            Load_Data();
             PrintDir();
+            showBookMark();
 
         } 
         public void PrintDir(){
@@ -77,8 +80,7 @@ namespace ga_z
             }
             
         }
-       
-     
+             
         private void FolderFileList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             
@@ -304,6 +306,7 @@ namespace ga_z
         }    
 
         public void showBookMark(){
+            BookListview.Items.Clear();
             ArrayList arr = bookmark.getBooklist();
             foreach (BookMark.myBook store in arr)
             {
@@ -319,6 +322,39 @@ namespace ga_z
                 FBD.SelectedPath = BookListview.FocusedItem.SubItems[1].Text;
                 PrintDir();
             }        
-        }           
+        }
+
+        public void Load_Data()
+        {
+            bookmark = new BookMark();
+            using (Stream input = File.OpenRead("ftp_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                bookmark = (BookMark)formatter.Deserialize(input);
+            }
+        }
+
+        public void Save_Data()
+        {
+            using (Stream output = File.Create("ftp_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(output, bookmark);
+            }
+        }       
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Save_Data();
+        }
+
+        private void 삭제ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (BookListview.SelectedItems.Count == 1)
+            {
+                bookmark.removeBookMark(BookListview.FocusedItem.Index);
+                showBookMark();
+            }
+        }
     }
 }

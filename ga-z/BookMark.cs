@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Windows.Forms;
+
 namespace ga_z
 {
     [Serializable]
     public class BookMark
     {
+        [Serializable]
         public struct myBook
         {
             public String bookname ;
@@ -39,5 +41,15 @@ namespace ga_z
         {
             return list;   
         }
+        public void removeBookMark(int index)
+        {
+            list.RemoveAt(index);
+        }
+
+    }
+
+    public class FtpUser
+    {
+        
     }
 }

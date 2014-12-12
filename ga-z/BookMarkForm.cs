@@ -21,6 +21,7 @@ namespace ga_z
             refbook = new BookMark();
             InitializeComponent();            
         }
+        
         public void show(BookMark book , ListView booklist)
         {
             listview = new ListView();
@@ -30,6 +31,7 @@ namespace ga_z
             bookmark.ShowDialog();         
             
         }        
+        
         public void close()
         {
             bookmark.Close();
