@@ -83,6 +83,8 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.Userarea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.삭제ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.Localarea.SuspendLayout();
             this.FTParea.SuspendLayout();
@@ -91,6 +93,7 @@
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.Bookarea.SuspendLayout();
+            this.Userarea.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -532,14 +535,18 @@
             this.LargeImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("LargeImageList.ImageStream")));
             this.LargeImageList.TransparentColor = System.Drawing.Color.Transparent;
             this.LargeImageList.Images.SetKeyName(0, "Double-J-Design-Ravenna-3d-Book.ico");
+            this.LargeImageList.Images.SetKeyName(1, "user_male.ico");
             // 
             // userListview
             // 
+            this.userListview.ContextMenuStrip = this.Userarea;
+            this.userListview.LargeImageList = this.LargeImageList;
             this.userListview.Location = new System.Drawing.Point(247, 3);
             this.userListview.Name = "userListview";
             this.userListview.Size = new System.Drawing.Size(236, 144);
             this.userListview.TabIndex = 1;
             this.userListview.UseCompatibleStateImageBehavior = false;
+            this.userListview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.userListview_MouseDoubleClick);
             // 
             // toolStripButton1
             // 
@@ -550,6 +557,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripLabel5
             // 
@@ -562,6 +570,21 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // Userarea
+            // 
+            this.Userarea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.삭제ToolStripMenuItem2});
+            this.Userarea.Name = "Userarea";
+            this.Userarea.Size = new System.Drawing.Size(99, 26);
+            this.Userarea.Text = "Userarea";
+            // 
+            // 삭제ToolStripMenuItem2
+            // 
+            this.삭제ToolStripMenuItem2.Name = "삭제ToolStripMenuItem2";
+            this.삭제ToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.삭제ToolStripMenuItem2.Text = "삭제";
+            this.삭제ToolStripMenuItem2.Click += new System.EventHandler(this.삭제ToolStripMenuItem2_Click);
             // 
             // MainForm
             // 
@@ -591,6 +614,7 @@
             this.toolStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.Bookarea.ResumeLayout(false);
+            this.Userarea.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -650,6 +674,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ContextMenuStrip Userarea;
+        private System.Windows.Forms.ToolStripMenuItem 삭제ToolStripMenuItem2;
 
 
 

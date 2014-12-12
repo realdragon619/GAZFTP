@@ -14,13 +14,14 @@ namespace ga_z
 {
     public partial class MainForm : Form 
     {       
-
         FolderBrowserDialog FBD = new FolderBrowserDialog();
         String []dirs;
         FTP ftp = new FTP();
         bool Conn = false;
         BookMarkForm bookform;
+        FtpUserForm ftpuserform;
         BookMark bookmark;
+        FtpUser ftpuser;
         Thread Th_Connect;
         String start_path = "C:\\";
         
@@ -32,9 +33,12 @@ namespace ga_z
 
             bookmark = new BookMark();
             bookform = new BookMarkForm();
+            ftpuser = new FtpUser();
+            ftpuserform = new FtpUserForm();
             Load_Data();
             PrintDir();
             showBookMark();
+            showFtpUser();
 
         } 
         public void PrintDir(){
@@ -316,6 +320,21 @@ namespace ga_z
             }
         }
 
+        public void showFtpUser()
+        {
+            userListview.Items.Clear();
+            ArrayList arr = ftpuser.getUserlist();
+            foreach (FtpUser.myUser store in arr)
+            {
+                ListViewItem lvi = new ListViewItem(store.title, 1);
+                lvi.SubItems.Add(store.host);
+                lvi.SubItems.Add(store.name);
+                lvi.SubItems.Add(store.pass);
+                lvi.SubItems.Add(store.protocol);
+                userListview.Items.Add(lvi);
+            }
+        }
+
         private void BookListview_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if(BookListview.SelectedItems.Count == 1){
@@ -327,10 +346,16 @@ namespace ga_z
         public void Load_Data()
         {
             bookmark = new BookMark();
+            ftpuser = new FtpUser();
             using (Stream input = File.OpenRead("ftp_data.dat"))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                bookmark = (BookMark)formatter.Deserialize(input);
+                bookmark = (BookMark)formatter.Deserialize(input);                
+            }
+            using (Stream input = File.OpenRead("user_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();                
+                ftpuser = (FtpUser)formatter.Deserialize(input);
             }
         }
 
@@ -339,7 +364,12 @@ namespace ga_z
             using (Stream output = File.Create("ftp_data.dat"))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(output, bookmark);
+                formatter.Serialize(output, bookmark);              
+            }
+            using (Stream output = File.Create("user_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();              
+                formatter.Serialize(output, ftpuser);
             }
         }       
 
@@ -354,6 +384,45 @@ namespace ga_z
             {
                 bookmark.removeBookMark(BookListview.FocusedItem.Index);
                 showBookMark();
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            ftpuserform.show(ftpuser, userListview);
+        }
+
+        private void userListview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (userListview.SelectedItems.Count == 1)
+            {
+                string port = "21";
+                String host = userListview.FocusedItem.SubItems[1].Text;
+                String user = userListview.FocusedItem.SubItems[2].Text;
+                String pass = userListview.FocusedItem.SubItems[3].Text;
+                Host.Text = host;
+                User.Text = user;
+                Password.Text = pass;                
+                if (Conn == true)
+                {
+                    Conn = ftp.DisConnenct(FTPListview);                    
+                }
+                Connect.Text = "접속끊기";
+                Th_Connect = new Thread(connectForm.show);
+                Th_Connect.Start();
+                Conn = ftp.Connected(0, host, user, pass, port, FTPListview);
+                connectForm.close();               
+                
+            }
+
+        }
+
+        private void 삭제ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (userListview.SelectedItems.Count == 1)
+            {
+                ftpuser.removeFtpUser(userListview.FocusedItem.Index);
+                showFtpUser();
             }
         }
     }

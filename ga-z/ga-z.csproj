@@ -63,6 +63,12 @@
       <DependentUpon>connectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FTP.cs" />
+    <Compile Include="FtpUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FtpUserForm.Designer.cs">
+      <DependentUpon>FtpUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="load_bar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="connectForm.resx">
       <DependentUpon>connectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FtpUserForm.resx">
+      <DependentUpon>FtpUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="load_bar.resx">
       <DependentUpon>load_bar.cs</DependentUpon>

@@ -11,3 +11,4 @@ C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\bin\Debug\BytesRoad.Net.Sockets.dll
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.connectForm.resources
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.load_bar.resources
 C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.BookMarkForm.resources
+C:\Users\jykim\Desktop\2014Project\ga-z\ga-z\obj\x86\Debug\ga_z.FtpUserForm.resources

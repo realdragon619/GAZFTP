@@ -36,11 +36,7 @@ namespace ga_z
         {
             bookmark.Close();
         }
-       
-        public void setText(String t){
-            
-        }
-        
+              
         private void search_path_Click(object sender, EventArgs e)
         {
             if (FBD.ShowDialog() == DialogResult.OK)
