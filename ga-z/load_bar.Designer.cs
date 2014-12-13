@@ -36,7 +36,7 @@
             // 
             // byte_bar
             // 
-            this.byte_bar.Location = new System.Drawing.Point(12, 52);
+            this.byte_bar.Location = new System.Drawing.Point(14, 52);
             this.byte_bar.Name = "byte_bar";
             this.byte_bar.Size = new System.Drawing.Size(367, 30);
             this.byte_bar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -51,7 +51,7 @@
             // byte_label
             // 
             this.byte_label.AutoSize = true;
-            this.byte_label.Location = new System.Drawing.Point(12, 52);
+            this.byte_label.Location = new System.Drawing.Point(12, 27);
             this.byte_label.Name = "byte_label";
             this.byte_label.Size = new System.Drawing.Size(0, 12);
             this.byte_label.TabIndex = 1;

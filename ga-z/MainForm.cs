@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace ga_z
 {
@@ -23,6 +24,7 @@ namespace ga_z
         BookMark bookmark;
         FtpUser ftpuser;
         Storage storage;
+        Backup backup;
         Thread Th_Connect;
         String start_path = "C:\\";
         
@@ -37,10 +39,12 @@ namespace ga_z
             ftpuser = new FtpUser();
             ftpuserform = new FtpUserForm();
             storage = new Storage();
+            backup = new Backup();
             Load_Data();
             PrintDir();
             showBookMark();
             showFtpUser();
+            showStorage();
 
         } 
         public void PrintDir(){
@@ -123,8 +127,17 @@ namespace ga_z
                             string path = FolderFileList.FocusedItem.SubItems[1].Text;
                             FBD.SelectedPath = path + "\\" + ClickFile;
                         }
+                        else if (Clicktype == "파일")
+                        {
+                            if (FolderFileList.SelectedItems.Count == 1)
+                            {
+                                string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
+                                MessageBox.Show(FolderFileList.FocusedItem.SubItems[1].Text);
+                                Process.Start(localpath);
+                            }
+                        }                           
                     }
-                   
+                    
                     FolderFileList.Items.Clear();
                     dirs = Directory.GetDirectories(FBD.SelectedPath);
                     DirectoryInfo di = new DirectoryInfo(FBD.SelectedPath);
@@ -207,8 +220,12 @@ namespace ga_z
                 string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
                 string filename = FolderFileList.FocusedItem.SubItems[0].Text;
                 int size = int.Parse(FolderFileList.FocusedItem.SubItems[3].Text);
-                ftp.Upload(localpath,size,filename);                
-                
+                if (ftp.compare(filename))
+                {
+                    ftp.Backup(backup);
+                }
+                ftp.Upload(localpath,size,filename);           
+
             }
         }
 
@@ -327,13 +344,40 @@ namespace ga_z
             userListview.Items.Clear();
             ArrayList arr = ftpuser.getUserlist();
             foreach (FtpUser.myUser store in arr)
-            {
+            {                
                 ListViewItem lvi = new ListViewItem(store.title, 1);
                 lvi.SubItems.Add(store.host);
                 lvi.SubItems.Add(store.name);
                 lvi.SubItems.Add(store.pass);
                 lvi.SubItems.Add(store.protocol);
                 userListview.Items.Add(lvi);
+            }
+        }
+
+        public void showStorage()
+        {
+            ArrayList arr = storage.getStorage();
+            storeListview.Items.Clear();
+            foreach (FileInfo f in arr)
+            {
+                ListViewItem lvi;
+
+                Icon iconForFile = SystemIcons.WinLogo;
+                lvi = new ListViewItem(f.Name, 1);
+                iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
+                if (!FileImageList.Images.ContainsKey(f.Extension))
+                {
+
+                    iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
+                    FileImageList.Images.Add(f.Extension, iconForFile);
+                }
+                lvi.ImageKey = f.Extension;
+                lvi.SubItems.Add(f.DirectoryName);
+                lvi.SubItems.Add("파일");
+                lvi.SubItems.Add(f.Length.ToString());
+                lvi.SubItems.Add(f.Extension);
+                storeListview.Items.Add(lvi);
+
             }
         }
 
@@ -359,6 +403,11 @@ namespace ga_z
                 BinaryFormatter formatter = new BinaryFormatter();                
                 ftpuser = (FtpUser)formatter.Deserialize(input);
             }
+            using (Stream input = File.OpenRead("storage_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                storage = (Storage)formatter.Deserialize(input);
+            }
         }
 
         public void Save_Data()
@@ -372,6 +421,11 @@ namespace ga_z
             {
                 BinaryFormatter formatter = new BinaryFormatter();              
                 formatter.Serialize(output, ftpuser);
+            }
+            using (Stream output = File.Create("storage_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(output, storage);
             }
         }       
 
@@ -434,29 +488,78 @@ namespace ga_z
             {
                 string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
                 storage.setFileLocation(localpath);
-                ArrayList arr = storage.getStorage();
-                storeListview.Items.Clear();
-                foreach (FileInfo f in arr)
+                showStorage();
+            }
+        }
+
+        private void 삭제ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (storeListview.SelectedItems.Count == 1)
+            {
+                storage.deleteFile(storeListview.FocusedItem.Index);                
+                showStorage();
+            }
+        }
+
+        private void 업로드ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (storeListview.SelectedItems.Count == 1 && Conn == true)
+            {
+                string localpath = storeListview.FocusedItem.SubItems[1].Text + "\\" + storeListview.FocusedItem.SubItems[0].Text;
+                string filename = storeListview.FocusedItem.SubItems[0].Text;
+                int size = int.Parse(storeListview.FocusedItem.SubItems[3].Text);
+                ftp.Upload(localpath, size, filename);
+
+            }
+        }
+
+        private void 열기ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FolderFileList.SelectedItems.Count == 1)
+            {
+                string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
+                Process.Start(localpath);
+            }
+        }
+
+        private void 열기ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (storeListview.SelectedItems.Count == 1)
+            {
+                string localpath = storeListview.FocusedItem.SubItems[1].Text + "\\" + storeListview.FocusedItem.SubItems[0].Text;
+                Process.Start(localpath);
+            }
+        }
+
+        private void storeListview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (storeListview.SelectedItems.Count == 1)
+            {
+                string localpath = storeListview.FocusedItem.SubItems[1].Text + "\\" + storeListview.FocusedItem.SubItems[0].Text;
+                Process.Start(localpath);
+            }
+        }
+
+        private void 백업목록ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String ftp_file_name = FTPListview.FocusedItem.SubItems[0].Text;
+            ArrayList arr = backup.getBackupList();
+            BackupListview.Items.Clear();
+            foreach (Backup.myBackup f in arr)
+            {
+                ListViewItem lvi;                
+                Icon iconForFile = SystemIcons.WinLogo;
+                lvi = new ListViewItem(f.name);
+                iconForFile = Icon.ExtractAssociatedIcon(f.file.FullName);
+                if (!FileImageList.Images.ContainsKey(f.file.Extension))
                 {
-                    ListViewItem lvi;
-
-                    Icon iconForFile = SystemIcons.WinLogo;
-                    lvi = new ListViewItem(f.Name, 1);
-                    iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
-                    if (!FileImageList.Images.ContainsKey(f.Extension))
-                    {
-
-                        iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
-                        FileImageList.Images.Add(f.Extension, iconForFile);
-                    }
-                    lvi.ImageKey = f.Extension;
-                    lvi.SubItems.Add(f.DirectoryName);
-                    lvi.SubItems.Add("파일");
-                    lvi.SubItems.Add(f.Length.ToString());
-                    lvi.SubItems.Add(f.Extension);
-                    storeListview.Items.Add(lvi);
-                    
+                    iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.file.FullName);
+                    FileImageList.Images.Add(f.file.Extension, iconForFile);
                 }
+                lvi.ImageKey = f.file.Extension;
+                lvi.SubItems.Add(f.path);
+                lvi.SubItems.Add(f.time);
+                BackupListview.Items.Add(lvi);
             }
         }
     }
