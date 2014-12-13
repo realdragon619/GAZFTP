@@ -22,6 +22,7 @@ namespace ga_z
         FtpUserForm ftpuserform;
         BookMark bookmark;
         FtpUser ftpuser;
+        Storage storage;
         Thread Th_Connect;
         String start_path = "C:\\";
         
@@ -35,6 +36,7 @@ namespace ga_z
             bookform = new BookMarkForm();
             ftpuser = new FtpUser();
             ftpuserform = new FtpUserForm();
+            storage = new Storage();
             Load_Data();
             PrintDir();
             showBookMark();
@@ -423,6 +425,38 @@ namespace ga_z
             {
                 ftpuser.removeFtpUser(userListview.FocusedItem.Index);
                 showFtpUser();
+            }
+        }
+
+        private void 저장소로저장ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FolderFileList.SelectedItems.Count == 1 && (FolderFileList.SelectedItems[0].SubItems[2].Text=="파일"))
+            {
+                string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
+                storage.setFileLocation(localpath);
+                ArrayList arr = storage.getStorage();
+                storeListview.Items.Clear();
+                foreach (FileInfo f in arr)
+                {
+                    ListViewItem lvi;
+
+                    Icon iconForFile = SystemIcons.WinLogo;
+                    lvi = new ListViewItem(f.Name, 1);
+                    iconForFile = Icon.ExtractAssociatedIcon(f.FullName);
+                    if (!FileImageList.Images.ContainsKey(f.Extension))
+                    {
+
+                        iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.FullName);
+                        FileImageList.Images.Add(f.Extension, iconForFile);
+                    }
+                    lvi.ImageKey = f.Extension;
+                    lvi.SubItems.Add(f.DirectoryName);
+                    lvi.SubItems.Add("파일");
+                    lvi.SubItems.Add(f.Length.ToString());
+                    lvi.SubItems.Add(f.Extension);
+                    storeListview.Items.Add(lvi);
+                    
+                }
             }
         }
     }

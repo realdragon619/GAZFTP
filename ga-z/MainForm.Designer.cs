@@ -74,17 +74,28 @@
             this.book_mark = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.BookListview = new System.Windows.Forms.ListView();
             this.Bookarea = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.삭제ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.LargeImageList = new System.Windows.Forms.ImageList(this.components);
             this.userListview = new System.Windows.Forms.ListView();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.Userarea = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.삭제ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tab1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listView2 = new System.Windows.Forms.ListView();
+            this.storeListview = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.저장소로저장ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.Localarea.SuspendLayout();
             this.FTParea.SuspendLayout();
@@ -94,6 +105,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.Bookarea.SuspendLayout();
             this.Userarea.SuspendLayout();
+            this.tab1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -160,9 +174,10 @@
             // 
             this.Localarea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.열기ToolStripMenuItem,
-            this.업로드ToolStripMenuItem});
+            this.업로드ToolStripMenuItem,
+            this.저장소로저장ToolStripMenuItem});
             this.Localarea.Name = "Localarea";
-            this.Localarea.Size = new System.Drawing.Size(111, 48);
+            this.Localarea.Size = new System.Drawing.Size(163, 92);
             // 
             // 열기ToolStripMenuItem
             // 
@@ -489,6 +504,29 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel5.Text = "유저추가";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
@@ -497,6 +535,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 518F));
             this.tableLayoutPanel2.Controls.Add(this.BookListview, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.userListview, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tab1, 2, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(1, 318);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -548,29 +587,6 @@
             this.userListview.UseCompatibleStateImageBehavior = false;
             this.userListview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.userListview_MouseDoubleClick);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(15, 1, 0, 2);
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Margin = new System.Windows.Forms.Padding(0, 1, 15, 2);
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(55, 22);
-            this.toolStripLabel5.Text = "유저추가";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
             // Userarea
             // 
             this.Userarea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -582,9 +598,101 @@
             // 삭제ToolStripMenuItem2
             // 
             this.삭제ToolStripMenuItem2.Name = "삭제ToolStripMenuItem2";
-            this.삭제ToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.삭제ToolStripMenuItem2.Size = new System.Drawing.Size(98, 22);
             this.삭제ToolStripMenuItem2.Text = "삭제";
             this.삭제ToolStripMenuItem2.Click += new System.EventHandler(this.삭제ToolStripMenuItem2_Click);
+            // 
+            // tab1
+            // 
+            this.tab1.Controls.Add(this.tabPage1);
+            this.tab1.Controls.Add(this.tabPage2);
+            this.tab1.Location = new System.Drawing.Point(489, 3);
+            this.tab1.Name = "tab1";
+            this.tab1.SelectedIndex = 0;
+            this.tab1.Size = new System.Drawing.Size(513, 144);
+            this.tab1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.storeListview);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(505, 118);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "임시저장소";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.listView2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(505, 118);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "백업저장소";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listView2
+            // 
+            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView2.Location = new System.Drawing.Point(3, 3);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(499, 112);
+            this.listView2.TabIndex = 0;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.listView2.View = System.Windows.Forms.View.Details;
+            // 
+            // storeListview
+            // 
+            this.storeListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.storeListview.ContextMenuStrip = this.Localarea;
+            this.storeListview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.storeListview.FullRowSelect = true;
+            this.storeListview.Location = new System.Drawing.Point(3, 3);
+            this.storeListview.Name = "storeListview";
+            this.storeListview.Size = new System.Drawing.Size(499, 112);
+            this.storeListview.SmallImageList = this.FileImageList;
+            this.storeListview.TabIndex = 2;
+            this.storeListview.UseCompatibleStateImageBehavior = false;
+            this.storeListview.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "이름";
+            this.columnHeader1.Width = 117;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "경로";
+            this.columnHeader2.Width = 145;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "형식";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "크기";
+            this.columnHeader4.Width = 97;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "확장자";
+            this.columnHeader5.Width = 55;
+            // 
+            // 저장소로저장ToolStripMenuItem
+            // 
+            this.저장소로저장ToolStripMenuItem.Name = "저장소로저장ToolStripMenuItem";
+            this.저장소로저장ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.저장소로저장ToolStripMenuItem.Text = "임시저장소 저장";
+            this.저장소로저장ToolStripMenuItem.Click += new System.EventHandler(this.저장소로저장ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -615,6 +723,9 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.Bookarea.ResumeLayout(false);
             this.Userarea.ResumeLayout(false);
+            this.tab1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -676,6 +787,17 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ContextMenuStrip Userarea;
         private System.Windows.Forms.ToolStripMenuItem 삭제ToolStripMenuItem2;
+        private System.Windows.Forms.TabControl tab1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView storeListview;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ToolStripMenuItem 저장소로저장ToolStripMenuItem;
 
 
 
