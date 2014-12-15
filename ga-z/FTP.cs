@@ -72,7 +72,7 @@ namespace ga_z
         private void putfile()
         {
             string target = Path.Combine(client.GetWorkingDirectory(0),
-            Path.GetFileName(path)).Replace("\\", "/");
+            filename).Replace("\\", "/");
             client.PutFile(0, target,path);
             Thread.Sleep(1000);
             bar_form.close();
@@ -89,7 +89,6 @@ namespace ga_z
             bar_form.close();
             
         }
-
         private void backupfile()
         {            
             string version = backup_filename;
@@ -142,6 +141,7 @@ namespace ga_z
         {
             upload_backup = backup;
             this.backup_local_path = ProgramFilesx86() + "\\GazFTP\\backup";
+                //ProgramFilesx86() + "\\GazFTP\\backup";
             this.backup_filename = backupitem.Name;          
             backupfile();
         }
@@ -242,6 +242,10 @@ namespace ga_z
         public ArrayList getBackupList()
         {
             return list;
+        }
+        public void deleteList(int index)
+        {
+            list.RemoveAt(index);
         }
         public void setBackup(FileInfo file, String name,String path, String time)
         {            

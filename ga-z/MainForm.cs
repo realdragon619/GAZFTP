@@ -132,7 +132,6 @@ namespace ga_z
                             if (FolderFileList.SelectedItems.Count == 1)
                             {
                                 string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
-                                MessageBox.Show(FolderFileList.FocusedItem.SubItems[1].Text);
                                 Process.Start(localpath);
                             }
                         }                           
@@ -408,6 +407,11 @@ namespace ga_z
                 BinaryFormatter formatter = new BinaryFormatter();
                 storage = (Storage)formatter.Deserialize(input);
             }
+            using (Stream input = File.OpenRead("backup_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                backup = (Backup)formatter.Deserialize(input);
+            }
         }
 
         public void Save_Data()
@@ -426,6 +430,11 @@ namespace ga_z
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(output, storage);
+            }
+            using (Stream output = File.Create("backup_data.dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(output, backup);
             }
         }       
 
@@ -486,6 +495,7 @@ namespace ga_z
         {
             if (FolderFileList.SelectedItems.Count == 1 && (FolderFileList.SelectedItems[0].SubItems[2].Text=="파일"))
             {
+                tab1.SelectTab(0);
                 string localpath = FolderFileList.FocusedItem.SubItems[1].Text + "\\" + FolderFileList.FocusedItem.SubItems[0].Text;
                 storage.setFileLocation(localpath);
                 showStorage();
@@ -508,6 +518,10 @@ namespace ga_z
                 string localpath = storeListview.FocusedItem.SubItems[1].Text + "\\" + storeListview.FocusedItem.SubItems[0].Text;
                 string filename = storeListview.FocusedItem.SubItems[0].Text;
                 int size = int.Parse(storeListview.FocusedItem.SubItems[3].Text);
+                if (ftp.compare(filename))
+                {
+                    ftp.Backup(backup);
+                }
                 ftp.Upload(localpath, size, filename);
 
             }
@@ -541,25 +555,119 @@ namespace ga_z
         }
 
         private void 백업목록ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String ftp_file_name = FTPListview.FocusedItem.SubItems[0].Text;
-            ArrayList arr = backup.getBackupList();
-            BackupListview.Items.Clear();
-            foreach (Backup.myBackup f in arr)
+        {            
+            if (FTPListview.SelectedItems.Count == 1)
             {
-                ListViewItem lvi;                
-                Icon iconForFile = SystemIcons.WinLogo;
-                lvi = new ListViewItem(f.name);
-                iconForFile = Icon.ExtractAssociatedIcon(f.file.FullName);
-                if (!FileImageList.Images.ContainsKey(f.file.Extension))
+                tab1.SelectTab(1);
+                String ftp_file_name = FTPListview.FocusedItem.SubItems[0].Text;
+                ArrayList arr = backup.getBackupList();
+                BackupListview.Items.Clear();
+                int count = 0;
+                foreach (Backup.myBackup f in arr)
                 {
-                    iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.file.FullName);
-                    FileImageList.Images.Add(f.file.Extension, iconForFile);
+                    if (f.name == ftp_file_name)
+                    {
+                        count++;
+                        ListViewItem lvi;
+                        Icon iconForFile = SystemIcons.WinLogo;
+                        lvi = new ListViewItem(f.name);
+                        iconForFile = Icon.ExtractAssociatedIcon(f.file.FullName);
+                        if (!FileImageList.Images.ContainsKey(f.file.Extension))
+                        {
+                            iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.file.FullName);
+                            FileImageList.Images.Add(f.file.Extension, iconForFile);
+                        }
+                        lvi.ImageKey = f.file.Extension;
+                        lvi.SubItems.Add(f.path);
+                        lvi.SubItems.Add(f.time);
+                        BackupListview.Items.Add(lvi);
+                    }
                 }
-                lvi.ImageKey = f.file.Extension;
-                lvi.SubItems.Add(f.path);
-                lvi.SubItems.Add(f.time);
-                BackupListview.Items.Add(lvi);
+                if (count == 0)
+                {
+                    MessageBox.Show("백업목록이 없습니다.");
+                }
+            }
+        }
+
+        private void BackupListview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (BackupListview.SelectedItems.Count == 1)
+            {
+                string version = BackupListview.FocusedItem.SubItems[0].Text;
+                string[] split = version.Split('.');
+                string new_version = split[0] + BackupListview.FocusedItem.SubItems[2].Text + "." + split[1];
+                string localpath = BackupListview.FocusedItem.SubItems[1].Text + "\\" + new_version;
+                Process.Start(localpath);
+            }
+        }
+
+        private void 열기ToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (BackupListview.SelectedItems.Count == 1)
+            {
+                string version = BackupListview.FocusedItem.SubItems[0].Text;
+                string[] split = version.Split('.');
+                string new_version = split[0] + BackupListview.FocusedItem.SubItems[2].Text + "." + split[1];
+                string localpath = BackupListview.FocusedItem.SubItems[1].Text + "\\" + new_version;
+                Process.Start(localpath);
+            }
+        }
+
+        private void 업로드ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (BackupListview.SelectedItems.Count == 1 && Conn == true)
+            {
+                string version = BackupListview.FocusedItem.SubItems[0].Text;
+                string[] split = version.Split('.');
+                string new_version = split[0] + BackupListview.FocusedItem.SubItems[2].Text + "." + split[1];
+                string localpath = BackupListview.FocusedItem.SubItems[1].Text + "\\" + new_version;
+                string filename = BackupListview.FocusedItem.SubItems[0].Text;
+                FileInfo file = new FileInfo(localpath);
+                int size = int.Parse(file.Length.ToString());                
+                ftp.Upload(localpath, size, filename);
+            }
+        }
+
+        private void 삭제ToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (BackupListview.SelectedItems.Count == 1)
+            {
+                string version = BackupListview.FocusedItem.SubItems[0].Text;
+                string[] split = version.Split('.');
+                string new_version = split[0] + BackupListview.FocusedItem.SubItems[2].Text + "." + split[1];
+                ArrayList arr = backup.getBackupList();
+                int index = 0;
+                foreach (Backup.myBackup f in arr)
+                {
+                    if (f.file.Name == new_version)
+                    {
+                        backup.deleteList(index);
+                        f.file.Delete();
+                        break;
+                    }
+                    index++;
+                }
+                BackupListview.Items.Clear();
+                foreach (Backup.myBackup f in arr)
+                {
+                    if (f.name == version)
+                    {
+                        ListViewItem lvi;
+                        Icon iconForFile = SystemIcons.WinLogo;
+                        lvi = new ListViewItem(f.name);
+                        iconForFile = Icon.ExtractAssociatedIcon(f.file.FullName);
+                        if (!FileImageList.Images.ContainsKey(f.file.Extension))
+                        {
+                            iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(f.file.FullName);
+                            FileImageList.Images.Add(f.file.Extension, iconForFile);
+                        }
+                        lvi.ImageKey = f.file.Extension;
+                        lvi.SubItems.Add(f.path);
+                        lvi.SubItems.Add(f.time);
+                        BackupListview.Items.Add(lvi);
+                    }
+                }
             }
         }
     }
