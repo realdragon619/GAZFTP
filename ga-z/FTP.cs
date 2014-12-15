@@ -26,8 +26,7 @@ namespace ga_z
 
         int filesize;
         public FTP()
-        {
-            
+        {            
             client.DataTransfered += new FtpClient.DataTransferedEventHandler(client_DataTransfered);
         }
                      
@@ -129,10 +128,20 @@ namespace ga_z
             Th_Connect.Start();
             Th_File.Start();      
         }
+        static string ProgramFilesx86()
+        {
+            if (8 == IntPtr.Size
+                || (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("PROCESSOR_ARCHITEW6432"))))
+            {
+                return Environment.GetEnvironmentVariable("ProgramFiles(x86)");
+            }
+
+            return Environment.GetEnvironmentVariable("ProgramFiles");
+        }
         public void Backup(Backup backup)
         {
             upload_backup = backup;
-            this.backup_local_path = "C:\\Users\\jykim\\Desktop\\2014Project\\ga-z\\ga-z\\bin\\Debug\\backup";
+            this.backup_local_path = ProgramFilesx86() + "\\GazFTP\\backup";
             this.backup_filename = backupitem.Name;          
             backupfile();
         }
